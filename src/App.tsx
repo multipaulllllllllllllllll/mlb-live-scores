@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import BlankDemo from "./pages/blank-demo";
+import MlbScores from "./pages/mlb-scores";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export default function App() {
@@ -7,7 +7,7 @@ export default function App() {
     <ThemeProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<BlankDemo />} />
+          <Route path="/" element={<MlbScores />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
