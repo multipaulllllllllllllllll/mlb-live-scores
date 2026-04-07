@@ -20,6 +20,8 @@ FROM oven/bun:latest
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+
 # Copy only what we need for production
 COPY package.json bunfig.toml ./
 
@@ -39,4 +41,3 @@ COPY --from=builder /app/backend-lib ./backend-lib
 EXPOSE 8080
 
 CMD ["bun", "run", "server.ts"]
-
