@@ -36,7 +36,7 @@ COPY --from=builder /app/zosite.json ./
 # Copy backend-lib if present
 COPY --from=builder /app/backend-lib ./backend-lib
 
-# Expose port
 EXPOSE 8080
 
 CMD ["bun", "run", "server.ts"]
+
