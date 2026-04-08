@@ -30,25 +30,29 @@ function calcHitterPoints(stats: any): number {
 function calcPitcherPoints(stats: any): number {
   const s = stats;
 
-  // Convert innings pitched (like 6.1) into outs
-  const wholeInnings = Math.floor(s.inningsPitched || 0);
-  const decimal = (s.inningsPitched || 0) - wholeInnings;
-  const extraOuts = decimal === 0.1 ? 1 : decimal === 0.2 ? 2 : 0;
+  // inningsPitched might be a number or string like "6.1"
+  const ipRaw = s.inningsPitched ?? 0;
+  const [wholeStr, fracStr = '0'] = String(ipRaw).split('.');
+  const wholeInnings = parseInt(wholeStr, 10);
+
+  // .1 = 1 out, .2 = 2 outs, anything else = 0
+  const extraOuts = fracStr === '1' ? 1 : fracStr === '2' ? 2 : 0;
   const outs = wholeInnings * 3 + extraOuts;
 
   return (
-    outs * 0.75 +                     // DK uses outs
+    outs * 0.75 +
     (s.strikeOuts || 0) * 2 +
     (s.wins || 0) * 4 -
     (s.earnedRuns || 0) * 2 -
     (s.hits || 0) * 0.6 -
     (s.walks || 0) * 0.6 -
-    (s.hitBatters || 0) * 0.6 +       // DK DOES penalize HBP
+    (s.hitBatters || 0) * 0.6 +
     (s.completeGames || 0) * 2.5 +
     (s.shutouts || 0) * 2.5 +
     (s.noHitters || 0) * 5
   );
 }
+
 
 
 async function fetchScores(dateStr: string) {
