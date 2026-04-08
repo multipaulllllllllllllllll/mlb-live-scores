@@ -27,7 +27,7 @@ function calcHitterPoints(stats: any): number {
   );
 }
 
-function calcPitcherPointsDK(stats: any): number {
+function calcPitcherPoints(stats: any): number {
   const s = stats;
 
   // Convert innings pitched (like 6.1) into outs
@@ -43,7 +43,7 @@ function calcPitcherPointsDK(stats: any): number {
     (s.earnedRuns || 0) * 2 -
     (s.hits || 0) * 0.6 -
     (s.walks || 0) * 0.6 -
-    (s.hitBatters || 0) * 0.6 +       
+    (s.hitBatters || 0) * 0.6 +       // DK DOES penalize HBP
     (s.completeGames || 0) * 2.5 +
     (s.shutouts || 0) * 2.5 +
     (s.noHitters || 0) * 5
