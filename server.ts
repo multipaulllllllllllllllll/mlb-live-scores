@@ -34,10 +34,11 @@ function calcPitcherPoints(stats: any): number {
   const ipRaw = s.inningsPitched ?? 0;
   const [wholeStr, fracStr = '0'] = String(ipRaw).split('.');
   const wholeInnings = parseInt(wholeStr, 10);
-
-  // .1 = 1 out, .2 = 2 outs
   const extraOuts = fracStr === '1' ? 1 : fracStr === '2' ? 2 : 0;
   const outs = wholeInnings * 3 + extraOuts;
+
+  const walks = s.baseOnBalls || 0;      // ✅ correct DK field
+  const hitBatters = s.hitBatsmen || 0;  // ✅ correct DK field
 
   return (
     outs * 0.75 +
@@ -45,13 +46,14 @@ function calcPitcherPoints(stats: any): number {
     (s.wins || 0) * 4 -
     (s.earnedRuns || 0) * 2 -
     (s.hits || 0) * 0.6 -
-    (s.walks || 0) * 0.6 -
-    (s.hitBatters || 0) * 0.6 +
+    walks * 0.6 -
+    hitBatters * 0.6 +
     (s.completeGames || 0) * 2.5 +
     (s.shutouts || 0) * 2.5 +
     (s.noHitters || 0) * 5
   );
 }
+
 
 async function fetchScores(dateStr: string) {
   const scheduleRes = await fetch(
