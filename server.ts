@@ -27,22 +27,29 @@ function calcHitterPoints(stats: any): number {
   );
 }
 
-function calcPitcherPoints(stats: any): number {
+function calcPitcherPointsDK(stats: any): number {
   const s = stats;
+
+  // Convert innings pitched (like 6.1) into outs
+  const wholeInnings = Math.floor(s.inningsPitched || 0);
+  const decimal = (s.inningsPitched || 0) - wholeInnings;
+  const extraOuts = decimal === 0.1 ? 1 : decimal === 0.2 ? 2 : 0;
+  const outs = wholeInnings * 3 + extraOuts;
+
   return (
-    (s.inningsPitched || 0) * 2.25 +
+    outs * 0.75 +                     // DK uses outs
     (s.strikeOuts || 0) * 2 +
     (s.wins || 0) * 4 -
     (s.earnedRuns || 0) * 2 -
-    //(s.hitsAllowed || 0) * 0.6 -
     (s.hits || 0) * 0.6 -
     (s.walks || 0) * 0.6 -
-    (s.hitBatters || 0) * 0.6 +
+    (s.hitBatters || 0) * 0.6 +       
     (s.completeGames || 0) * 2.5 +
     (s.shutouts || 0) * 2.5 +
     (s.noHitters || 0) * 5
   );
 }
+
 
 async function fetchScores(dateStr: string) {
   const scheduleRes = await fetch(
