@@ -176,7 +176,7 @@ async function fetchAllScores(dateStr: string) {
                 //h: stats.hitsAllowed || 0,
                 h: stats.hits || 0,
                 r: stats.runs || 0,
-                bb: stats.walks || 0,
+                bb: stats.baseOnBalls  || 0,
                 so: stats.strikeOuts || 0,
                 wins: stats.wins || 0,
                 era: stats.era || "0.00",
