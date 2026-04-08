@@ -30,12 +30,12 @@ function calcHitterPoints(stats: any): number {
 function calcPitcherPoints(stats: any): number {
   const s = stats;
 
-  // inningsPitched might be a number or string like "6.1"
+  // inningsPitched might be "6.1", 6.1, "6", or "6.0"
   const ipRaw = s.inningsPitched ?? 0;
   const [wholeStr, fracStr = '0'] = String(ipRaw).split('.');
   const wholeInnings = parseInt(wholeStr, 10);
 
-  // .1 = 1 out, .2 = 2 outs, anything else = 0
+  // .1 = 1 out, .2 = 2 outs
   const extraOuts = fracStr === '1' ? 1 : fracStr === '2' ? 2 : 0;
   const outs = wholeInnings * 3 + extraOuts;
 
@@ -52,8 +52,6 @@ function calcPitcherPoints(stats: any): number {
     (s.noHitters || 0) * 5
   );
 }
-
-
 
 async function fetchScores(dateStr: string) {
   const scheduleRes = await fetch(
