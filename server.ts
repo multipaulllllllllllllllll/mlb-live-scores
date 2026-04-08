@@ -221,7 +221,8 @@ async function fetchAllScores(dateStr: string) {
                 walks: stats.baseOnBalls || 0,
                 hbp: stats.hitByPitch || 0,
                 sb: stats.stolenBases || 0,
-                cs: stats.caughtStealing || 0,                
+                cs: stats.caughtStealing || 0,   
+                strikeouts: stats.strikeOuts || 0,             
               });
             }
           }
