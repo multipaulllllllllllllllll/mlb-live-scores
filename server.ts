@@ -24,7 +24,7 @@ function calcHitterPoints(stats: any): number {
     walks * 2 +  
     (s.hitByPitch || 0) * 2 +
     (s.stolenBases || 0) * 5 -
-    (s.caughtStealing || 0) * 1
+    //(s.caughtStealing || 0) * 1
   );
 }
 
