@@ -214,12 +214,13 @@ function HitterTable({ hitters }: { hitters: Hitter[] }) {
             <th className="px-3 py-2 text-right font-semibold">AB</th>
             <th className="px-3 py-2 text-right font-semibold">R</th>
             <th className="px-3 py-2 text-right font-semibold">H</th>
-            <th className="px-3 py-2 text-right font-semibold">RBI</th>
-            <th className="px-3 py-2 text-right font-semibold">HR</th>
-            <th className="px-3 py-2 text-right font-semibold">BB</th>
-            <th className="px-3 py-2 text-right font-semibold">SO</th>
             <th className="px-3 py-2 text-right font-semibold">2B</th>
             <th className="px-3 py-2 text-right font-semibold">3B</th>
+            <th className="px-3 py-2 text-right font-semibold">HR</th>
+            <th className="px-3 py-2 text-right font-semibold">RBI</th>
+            <th className="px-3 py-2 text-right font-semibold">BB</th>
+            <th className="px-3 py-2 text-right font-semibold">SO</th>
+            <th className="px-3 py-2 text-right font-semibold">SB</th>
           </tr>
         </thead>
         <tbody>
@@ -233,12 +234,13 @@ function HitterTable({ hitters }: { hitters: Hitter[] }) {
               <td className="px-3 py-2 text-right text-slate-300">{h.ab}</td>
               <td className="px-3 py-2 text-right text-slate-300">{h.runs}</td>
               <td className="px-3 py-2 text-right text-slate-300">{h.hits}</td>
-              <td className="px-3 py-2 text-right text-slate-300">{h.rbi}</td>
-              <td className="px-3 py-2 text-right text-slate-300">{h.hr}</td>
-              <td className="px-3 py-2 text-right text-slate-300">{h.walks}</td>
-              <td className="px-3 py-2 text-right text-slate-300">{h.strikeouts}</td>
               <td className="px-3 py-2 text-right text-slate-300">{h.doubles}</td>
               <td className="px-3 py-2 text-right text-slate-300">{h.triples}</td>
+              <td className="px-3 py-2 text-right text-slate-300">{h.hr}</td>
+              <td className="px-3 py-2 text-right text-slate-300">{h.rbi}</td>
+              <td className="px-3 py-2 text-right text-slate-300">{h.walks}</td>
+              <td className="px-3 py-2 text-right text-slate-300">{h.strikeouts}</td>
+              <td className="px-3 py-2 text-right text-slate-300">{h.sb}</td>
             </tr>
           ))}
         </tbody>
