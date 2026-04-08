@@ -12,8 +12,16 @@ const mode: Mode =
 
 function calcHitterPoints(stats: any): number {
   const s = stats;
-  const singles = Math.max(0, (s.hits || 0) - (s.doubles || 0) - (s.triples || 0) - (s.homeRuns || 0));
-  const walks = s.baseOnBalls || 0; 
+  const singles = Math.max(
+    0,
+    (s.hits || 0) -
+      (s.doubles || 0) -
+      (s.triples || 0) -
+      (s.homeRuns || 0)
+  );
+
+  const walks = s.baseOnBalls || 0;
+
   return (
     singles * 3 +
     (s.doubles || 0) * 5 +
@@ -21,12 +29,13 @@ function calcHitterPoints(stats: any): number {
     (s.homeRuns || 0) * 10 +
     (s.rbi || 0) * 2 +
     (s.runs || 0) * 2 +
-    walks * 2 +  
+    walks * 2 +
     (s.hitByPitch || 0) * 2 +
-    (s.stolenBases || 0) * 5 -
-    //(s.caughtStealing || 0) * 1
+    (s.stolenBases || 0) * 5
+  
   );
 }
+
 
 function calcPitcherPoints(stats: any): number {
   const s = stats;
