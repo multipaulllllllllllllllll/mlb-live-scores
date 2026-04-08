@@ -216,6 +216,11 @@ async function fetchAllScores(dateStr: string) {
                 triples: stats.triples || 0,
                 hr: stats.homeRuns || 0,
                 rbi: stats.rbi || 0,
+                runs: stats.runs || 0,
+                walks: stats.baseOnBalls || 0,
+                hbp: stats.hitByPitch || 0,
+                sb: stats.stolenBases || 0,
+                cs: stats.caughtStealing || 0,                
               });
             }
           }
