@@ -34,7 +34,8 @@ function calcPitcherPoints(stats: any): number {
     (s.strikeOuts || 0) * 2 +
     (s.wins || 0) * 4 -
     (s.earnedRuns || 0) * 2 -
-    (s.hitsAllowed || 0) * 0.6 -
+    //(s.hitsAllowed || 0) * 0.6 -
+    (s.hits || 0) * 0.6 -
     (s.walks || 0) * 0.6 -
     (s.hitBatters || 0) * 0.6 +
     (s.completeGames || 0) * 2.5 +
@@ -163,7 +164,8 @@ async function fetchAllScores(dateStr: string) {
                 team: teamAbbr,
                 points: pts,
                 ip: parseFloat(parseFloat(String(stats.inningsPitched || "0")).toFixed(1)),
-                h: stats.hitsAllowed || 0,
+                //h: stats.hitsAllowed || 0,
+                h: stats.hits || 0,
                 r: stats.runs || 0,
                 bb: stats.walks || 0,
                 so: stats.strikeOuts || 0,
